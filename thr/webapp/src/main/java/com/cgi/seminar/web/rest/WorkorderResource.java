@@ -1,5 +1,6 @@
 package com.cgi.seminar.web.rest;
 
+import com.cgi.seminar.processors.WorkorderProcessor;
 import com.codahale.metrics.annotation.Timed;
 import com.cgi.seminar.domain.Workorder;
 import com.cgi.seminar.repository.WorkorderRepository;
@@ -29,6 +30,9 @@ public class WorkorderResource {
     private final Logger log = LoggerFactory.getLogger(WorkorderResource.class);
 
     @Inject
+    private WorkorderProcessor workorderProcessor;
+
+    @Inject
     private WorkorderRepository workorderRepository;
 
     /**
@@ -43,7 +47,7 @@ public class WorkorderResource {
         if (workorder.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new workorder cannot already have an ID").body(null);
         }
-        Workorder result = workorderRepository.save(workorder);
+        Workorder result = workorderProcessor.create(workorder);
         return ResponseEntity.created(new URI("/api/workorders/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("workorder", result.getId().toString()))
                 .body(result);
