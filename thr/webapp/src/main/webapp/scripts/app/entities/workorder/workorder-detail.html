@@ -1,0 +1,78 @@
+
+<div>
+    <h2><span translate="thrApp.workorder.detail.title">Workorder</span> {{workorder.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="thrApp.workorder.plannedStart">PlannedStart</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{workorder.plannedStart}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="thrApp.workorder.plannedEnd">PlannedEnd</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{workorder.plannedEnd}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="thrApp.workorder.actualStart">ActualStart</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{workorder.actualStart}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="thrApp.workorder.actualEnd">ActualEnd</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{workorder.actualEnd}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="thrApp.workorder.location">location</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="location.detail({id:workorder.location.id})">{{workorder.location.name}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="thrApp.workorder.employee">employee</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="employee.detail({id:workorder.employee.id})">{{workorder.employee.name}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="thrApp.workorder.questionnaire">questionnaire</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="questionnaire.detail({id:workorder.questionnaire.id})">{{workorder.questionnaire.name}}</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

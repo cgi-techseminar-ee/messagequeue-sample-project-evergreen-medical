@@ -1,0 +1,56 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "location",
+            "otherEntityName": "location",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "employee",
+            "otherEntityName": "employee",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "questionnaire",
+            "otherEntityName": "questionnaire",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "plannedStart",
+            "fieldType": "DateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "plannedEnd",
+            "fieldType": "DateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "actualStart",
+            "fieldType": "DateTime"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "actualEnd",
+            "fieldType": "DateTime"
+        }
+    ],
+    "changelogDate": "20151024190928",
+    "dto": "no",
+    "pagination": "no"
+}

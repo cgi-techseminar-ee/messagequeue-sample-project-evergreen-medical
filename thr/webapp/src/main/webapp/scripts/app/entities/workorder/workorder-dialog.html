@@ -1,0 +1,88 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myWorkorderLabel" translate="thrApp.workorder.home.createOrEditLabel">Create or edit a Workorder</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="workorder.id" readonly>
+        </div>
+        <div class="form-group">
+            <label translate="thrApp.workorder.plannedStart" for="field_plannedStart">PlannedStart</label>
+            <input type="datetime-local" class="form-control" name="plannedStart" id="field_plannedStart"
+                    ng-model="workorder.plannedStart" ng-model-options="{timezone: 'UTC'}"
+                    required>
+            <div ng-show="editForm.plannedStart.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.plannedStart.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.plannedStart.$error.datetimelocal" translate="entity.validation.datetimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="thrApp.workorder.plannedEnd" for="field_plannedEnd">PlannedEnd</label>
+            <input type="datetime-local" class="form-control" name="plannedEnd" id="field_plannedEnd"
+                    ng-model="workorder.plannedEnd" ng-model-options="{timezone: 'UTC'}"
+                    required>
+            <div ng-show="editForm.plannedEnd.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.plannedEnd.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.plannedEnd.$error.datetimelocal" translate="entity.validation.datetimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="thrApp.workorder.actualStart" for="field_actualStart">ActualStart</label>
+            <input type="datetime-local" class="form-control" name="actualStart" id="field_actualStart"
+                    ng-model="workorder.actualStart" ng-model-options="{timezone: 'UTC'}"
+                    >
+        </div>
+        <div class="form-group">
+            <label translate="thrApp.workorder.actualEnd" for="field_actualEnd">ActualEnd</label>
+            <input type="datetime-local" class="form-control" name="actualEnd" id="field_actualEnd"
+                    ng-model="workorder.actualEnd" ng-model-options="{timezone: 'UTC'}"
+                    >
+        </div>
+
+        <div class="form-group">
+            <label translate="thrApp.workorder.location" for="field_location">location</label>
+            <select class="form-control" id="field_location" name="location" ng-model="workorder.location" ng-options="location as location.name for location in locations track by location.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="thrApp.workorder.employee" for="field_employee">employee</label>
+            <select class="form-control" id="field_employee" name="employee" ng-model="workorder.employee" ng-options="employee as employee.name for employee in employees track by employee.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="thrApp.workorder.questionnaire" for="field_questionnaire">questionnaire</label>
+            <select class="form-control" id="field_questionnaire" name="questionnaire" ng-model="workorder.questionnaire" ng-options="questionnaire as questionnaire.name for questionnaire in questionnaires track by questionnaire.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

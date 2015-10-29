@@ -1,0 +1,21 @@
+{
+  "generator-jhipster": {
+    "baseName": "thr",
+    "packageName": "com.cgi.seminar",
+    "packageFolder": "com/cgi/seminar",
+    "authenticationType": "session",
+    "hibernateCache": "ehcache",
+    "clusteredHttpSession": "no",
+    "websocket": "no",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "no",
+    "useSass": false,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "javaVersion": "8",
+    "enableTranslation": true,
+    "rememberMeKey": "4cd08ca4f79f2b69c74eb86492e7aab324cae252"
+  }
+}

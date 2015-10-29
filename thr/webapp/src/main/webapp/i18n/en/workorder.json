@@ -1,0 +1,27 @@
+{
+    "thrApp": {
+        "workorder" : {
+            "home": {
+                "title": "Workorders",
+                "createLabel": "Create a new Workorder",
+                "createOrEditLabel": "Create or edit a Workorder"
+            },
+            "created": "A new Workorder is created with identifier {{ param }}",
+            "updated": "A Workorder is updated with identifier {{ param }}",
+            "deleted": "A Workorder is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Workorder {{ id }}?"
+            },
+            "detail": {
+                "title": "Workorder"
+            },
+            "plannedStart": "PlannedStart",
+            "plannedEnd": "PlannedEnd",
+            "actualStart": "ActualStart",
+            "actualEnd": "ActualEnd",
+            "location": "Location",
+            "employee": "Employee",
+            "questionnaire": "Questionnaire"
+        }
+    }
+}

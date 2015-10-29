@@ -1,0 +1,11 @@
+jhipster-prod-postgresql:
+  container_name: thr-prod-postgresql
+  image: postgres
+  # volumes:
+  # - ~/volumes/jhipster/thr/prod-postgresql/:/var/lib/postgresql/
+  environment:
+  - POSTGRES_USER=thr
+  - POSTGRES_PASSWORD=
+  ports:
+  - "5432:5432"
+

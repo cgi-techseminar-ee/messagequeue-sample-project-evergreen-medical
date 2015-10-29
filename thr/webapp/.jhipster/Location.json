@@ -1,0 +1,51 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "workorder",
+            "otherEntityName": "workorder",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "location"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "address",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": "5"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "latitude",
+            "fieldType": "Double"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "longitude",
+            "fieldType": "Double"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": "3"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "externalId",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20151022180048",
+    "dto": "no",
+    "pagination": "no"
+}

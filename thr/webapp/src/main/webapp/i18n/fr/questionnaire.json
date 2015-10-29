@@ -1,0 +1,22 @@
+{
+    "thrApp": {
+        "questionnaire" : {
+            "home": {
+                "title": "Questionnaires",
+                "createLabel": "Créer un nouveau Questionnaire",
+                "createOrEditLabel": "Créer ou éditer un Questionnaire"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Questionnaire {{ id }} ?"
+            },
+            "detail": {
+                "title": "Questionnaire"
+            },
+            "name": "Name",
+            "questions": "Questions",
+            "externalId": "ExternalId",
+            "workorder": "Workorder"
+        }
+    }
+}
+

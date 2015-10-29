@@ -1,0 +1,24 @@
+{
+    "thrApp": {
+        "questionnaire" : {
+            "home": {
+                "title": "Questionnaires",
+                "createLabel": "Create a new Questionnaire",
+                "createOrEditLabel": "Create or edit a Questionnaire"
+            },
+            "created": "A new Questionnaire is created with identifier {{ param }}",
+            "updated": "A Questionnaire is updated with identifier {{ param }}",
+            "deleted": "A Questionnaire is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Questionnaire {{ id }}?"
+            },
+            "detail": {
+                "title": "Questionnaire"
+            },
+            "name": "Name",
+            "questions": "Questions",
+            "externalId": "ExternalId",
+            "workorder": "Workorder"
+        }
+    }
+}

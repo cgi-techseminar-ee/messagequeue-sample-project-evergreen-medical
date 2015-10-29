@@ -1,0 +1,41 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "workorder",
+            "otherEntityName": "workorder",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "questionnaire"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": "3"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "questions",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": "2"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "externalId",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20151024124701",
+    "dto": "no",
+    "pagination": "no"
+}

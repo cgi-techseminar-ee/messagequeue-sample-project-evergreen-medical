@@ -1,0 +1,25 @@
+{
+    "thrApp": {
+        "workorder" : {
+            "home": {
+                "title": "Workorders",
+                "createLabel": "Créer un nouveau Workorder",
+                "createOrEditLabel": "Créer ou éditer un Workorder"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Workorder {{ id }} ?"
+            },
+            "detail": {
+                "title": "Workorder"
+            },
+            "plannedStart": "PlannedStart",
+            "plannedEnd": "PlannedEnd",
+            "actualStart": "ActualStart",
+            "actualEnd": "ActualEnd",
+            "location": "Location",
+            "employee": "Employee",
+            "questionnaire": "Questionnaire"
+        }
+    }
+}
+

@@ -1,0 +1,91 @@
+<div>
+    <h2 translate="thrApp.workorder.home.title">Workorders</h2>
+    <jh-alert></jh-alert>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" ui-sref="workorder.new">
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="thrApp.workorder.home.createLabel">Create a new Workorder</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteWorkorderConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm" ng-submit="confirmDelete(workorder.id)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p translate="thrApp.workorder.delete.question" translate-values="{id: '{{workorder.id}}'}">Are you sure you want to delete this Workorder?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="global.field.id">ID</th>
+                    <th translate="thrApp.workorder.plannedStart">PlannedStart</th>
+                    <th translate="thrApp.workorder.plannedEnd">PlannedEnd</th>
+                    <th translate="thrApp.workorder.actualStart">ActualStart</th>
+                    <th translate="thrApp.workorder.actualEnd">ActualEnd</th>
+                    <th translate="thrApp.workorder.location">location</th>
+                    <th translate="thrApp.workorder.employee">employee</th>
+                    <th translate="thrApp.workorder.questionnaire">questionnaire</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="workorder in workorders track by workorder.id">
+                    <td><a ui-sref="workorder.detail({id:workorder.id})">{{workorder.id}}</a></td>
+                    <td>{{workorder.plannedStart}}</td>
+                    <td>{{workorder.plannedEnd}}</td>
+                    <td>{{workorder.actualStart}}</td>
+                    <td>{{workorder.actualEnd}}</td>
+                    <td>
+                        <a ui-sref="location.detail({id:workorder.location.id})">{{workorder.location.name}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="employee.detail({id:workorder.employee.id})">{{workorder.employee.name}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="questionnaire.detail({id:workorder.questionnaire.id})">{{workorder.questionnaire.name}}</a>
+                    </td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="workorder.detail({id:workorder.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="workorder.edit({id:workorder.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="delete(workorder.id)"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
