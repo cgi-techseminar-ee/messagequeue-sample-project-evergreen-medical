@@ -24,6 +24,11 @@ spring:
             enabled: false
     thymeleaf:
         mode: XHTML
+    rabbitmq:
+        host: localhost
+        port: 5672
+        username: mq
+        password: mqpasswd
 
 security:
     basic:

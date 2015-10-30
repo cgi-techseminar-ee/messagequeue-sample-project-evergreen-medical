@@ -1,5 +1,6 @@
 package com.cgi.seminar.processors;
 
+import com.cgi.seminar.domain.Location;
 import com.cgi.seminar.domain.Questionnaire;
 import com.cgi.seminar.domain.Workorder;
 import com.cgi.seminar.messaging.publishers.QuestionnaireMessagingGateway;
@@ -34,7 +35,11 @@ public class WorkorderProcessorImpl implements WorkorderProcessor {
     }
 
     private void updateQuestionnaire(Workorder workorder) {
-        String locationExternalId = workorder.getLocation().getExternalId();
+        Location location = workorder.getLocation();
+        if (location == null) {
+            return;
+        }
+        String locationExternalId = location.getExternalId();
         if (StringUtils.isBlank(locationExternalId)) {
             return;
         }
