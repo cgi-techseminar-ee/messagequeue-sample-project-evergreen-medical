@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.HashMap;
 
-import static com.cgi.seminar.messaging.publishers.MessagingGatewayConfiguration.QUESTIONNAIRE_EXCHANGE_NAME;
-import static com.cgi.seminar.messaging.publishers.MessagingGatewayConfiguration.QUESTIONNAIRE_QUEUE_NAME;
+import static com.cgi.seminar.messaging.MessagingConfiguration.QUESTIONNAIRE_EXCHANGE_NAME;
+import static com.cgi.seminar.messaging.MessagingConfiguration.QUESTIONNAIRE_QUEUE_NAME;
 
 @Component
 public class QuestionnaireMessagingGatewayImpl extends MessagingGatewayBase implements QuestionnaireMessagingGateway {
