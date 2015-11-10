@@ -1,8 +1,7 @@
 package com.cgi.seminar.messaging.messages;
 
-public class NurseMessage {
+public class NurseMessage extends MessageWithId {
     private String name;
-    private String id;
 
     public String getName() {
         return name;
@@ -10,14 +9,6 @@ public class NurseMessage {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     @Override

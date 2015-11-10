@@ -4,12 +4,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Location.
@@ -17,44 +21,28 @@ import java.util.Objects;
 @Entity
 @Table(name = "location")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Location implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
+public class Location extends EntityWithExternalId implements Serializable {
 
     @NotNull
-    @Size(min = 5)        
+    @Size(min = 5)
     @Column(name = "address", nullable = false)
     private String address;
-    
+
     @Column(name = "latitude")
     private Double latitude;
-    
+
     @Column(name = "longitude")
     private Double longitude;
 
     @NotNull
-    @Size(min = 3)        
+    @Size(min = 3)
     @Column(name = "name", nullable = false)
     private String name;
-    
-    @Column(name = "external_id")
-    private String externalId;
 
     @OneToMany(mappedBy = "location")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Workorder> workorders = new HashSet<>();
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getAddress() {
         return address;
@@ -88,14 +76,6 @@ public class Location implements Serializable {
         this.name = name;
     }
 
-    public String getExternalId() {
-        return externalId;
-    }
-
-    public void setExternalId(String externalId) {
-        this.externalId = externalId;
-    }
-
     public Set<Workorder> getWorkorders() {
         return workorders;
     }
@@ -115,7 +95,7 @@ public class Location implements Serializable {
 
         Location location = (Location) o;
 
-        if ( ! Objects.equals(id, location.id)) return false;
+        if (!Objects.equals(id, location.id)) return false;
 
         return true;
     }
@@ -128,12 +108,12 @@ public class Location implements Serializable {
     @Override
     public String toString() {
         return "Location{" +
-                "id=" + id +
-                ", address='" + address + "'" +
-                ", latitude='" + latitude + "'" +
-                ", longitude='" + longitude + "'" +
-                ", name='" + name + "'" +
-                ", externalId='" + externalId + "'" +
-                '}';
+            "id=" + id +
+            ", address='" + address + "'" +
+            ", latitude='" + latitude + "'" +
+            ", longitude='" + longitude + "'" +
+            ", name='" + name + "'" +
+            ", externalId='" + externalId + "'" +
+            '}';
     }
 }

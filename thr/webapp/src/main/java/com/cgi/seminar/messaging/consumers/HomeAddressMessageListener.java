@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 
+import static com.cgi.seminar.messaging.consumers.GenericMessageHandler.createOrUpdateEntityFromMessage;
+
 @Component
 public class HomeAddressMessageListener {
 
@@ -23,18 +25,11 @@ public class HomeAddressMessageListener {
     @RabbitListener(queues = {"homeaddress-queue"}) // must match MessagingConfiguration
     @Transactional
     void onMessageReceived(Message<HomeAddressMessage> message) {
-        HomeAddressMessage homeAddressMessage = message.getPayload();
-        log.info("Received HomeAddress message: {}", homeAddressMessage);
-        String externalId = homeAddressMessage.getId();
-        Location location = locationRepository.findByExternalId(externalId);
-        if (location == null) {
-            location = new Location();
-            location.setExternalId(externalId);
-        }
-        location.setAddress(homeAddressMessage.getAddress());
-        location.setName(homeAddressMessage.getName());
-        location.setLatitude(homeAddressMessage.getLatitude());
-        location.setLongitude(homeAddressMessage.getLongitude());
-        locationRepository.save(location);
+        createOrUpdateEntityFromMessage(message, Location.class, locationRepository, (location, msg) -> {
+            location.setAddress(msg.getAddress());
+            location.setName(msg.getName());
+            location.setLatitude(msg.getLatitude());
+            location.setLongitude(msg.getLongitude());
+        });
     }
 }

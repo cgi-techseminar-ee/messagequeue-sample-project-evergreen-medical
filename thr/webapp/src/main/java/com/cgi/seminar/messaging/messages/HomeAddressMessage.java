@@ -1,19 +1,10 @@
 package com.cgi.seminar.messaging.messages;
 
-public class HomeAddressMessage {
-    private String id;
+public class HomeAddressMessage extends MessageWithId {
     private String address;
     private String name;
     private Double latitude;
     private Double longitude;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getAddress() {
         return address;

@@ -4,12 +4,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Employee.
@@ -17,33 +21,17 @@ import java.util.Objects;
 @Entity
 @Table(name = "employee")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Employee implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
+public class Employee extends EntityWithExternalId implements Serializable {
 
     @NotNull
-    @Size(min = 3)        
+    @Size(min = 3)
     @Column(name = "name", nullable = false)
     private String name;
-    
-    @Column(name = "external_id")
-    private String externalId;
 
     @OneToMany(mappedBy = "employee")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Workorder> workorders = new HashSet<>();
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -51,14 +39,6 @@ public class Employee implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getExternalId() {
-        return externalId;
-    }
-
-    public void setExternalId(String externalId) {
-        this.externalId = externalId;
     }
 
     public Set<Workorder> getWorkorders() {
@@ -80,7 +60,7 @@ public class Employee implements Serializable {
 
         Employee employee = (Employee) o;
 
-        if ( ! Objects.equals(id, employee.id)) return false;
+        if (!Objects.equals(id, employee.id)) return false;
 
         return true;
     }
@@ -93,9 +73,9 @@ public class Employee implements Serializable {
     @Override
     public String toString() {
         return "Employee{" +
-                "id=" + id +
-                ", name='" + name + "'" +
-                ", externalId='" + externalId + "'" +
-                '}';
+            "id=" + id +
+            ", name='" + name + "'" +
+            ", externalId='" + externalId + "'" +
+            '}';
     }
 }
