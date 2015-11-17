@@ -7,20 +7,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.Message;
 
-import java.util.function.BiConsumer;
+public abstract class MessageListenerBase<T extends EntityWithExternalId, M extends MessageWithId> {
 
-public final class GenericMessageHandler {
+    protected final Logger log = LoggerFactory.getLogger(getClass());
 
-    protected static final Logger log = LoggerFactory.getLogger(GenericMessageHandler.class);
-
-    static <T extends EntityWithExternalId, M extends MessageWithId>
-    void createOrUpdateEntityFromMessage(Message<M> genericMessage, Class<T> cls,
-                                         EntityWithExternalIdRepository<T> repository,
-                                         BiConsumer<T, M> fillFields) {
+    void createOrUpdateEntityFromMessage(Message<M> genericMessage, Class<T> cls) {
         M message = genericMessage.getPayload();
         log.info("Received {}: {}", message.getClass().getSimpleName(), message);
         String externalId = message.getId();
-        T entity = repository.findByExternalId(externalId);
+        T entity = getRepository().findByExternalId(externalId);
         if (entity == null) {
             try {
                 entity = cls.newInstance();
@@ -29,7 +24,11 @@ public final class GenericMessageHandler {
             }
             entity.setExternalId(externalId);
         }
-        fillFields.accept(entity, message);
-        repository.save(entity);
+        fillEntityFieldsFromMessage(entity, message);
+        getRepository().save(entity);
     }
+
+    protected abstract EntityWithExternalIdRepository<T> getRepository();
+
+    protected abstract void fillEntityFieldsFromMessage(T entity, M message);
 }

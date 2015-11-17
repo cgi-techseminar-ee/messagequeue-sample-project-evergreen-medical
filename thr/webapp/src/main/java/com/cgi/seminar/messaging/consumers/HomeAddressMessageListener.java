@@ -2,6 +2,7 @@ package com.cgi.seminar.messaging.consumers;
 
 import com.cgi.seminar.domain.Location;
 import com.cgi.seminar.messaging.messages.HomeAddressMessage;
+import com.cgi.seminar.repository.EntityWithExternalIdRepository;
 import com.cgi.seminar.repository.LocationRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,12 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 
-import static com.cgi.seminar.messaging.consumers.GenericMessageHandler.createOrUpdateEntityFromMessage;
-
 @Component
-public class HomeAddressMessageListener {
-
-    private final Logger log = LoggerFactory.getLogger(getClass());
+public class HomeAddressMessageListener extends MessageListenerBase<Location, HomeAddressMessage> {
 
     @Inject
     LocationRepository locationRepository;
@@ -25,11 +22,19 @@ public class HomeAddressMessageListener {
     @RabbitListener(queues = {"homeaddress-queue"}) // must match MessagingConfiguration
     @Transactional
     void onMessageReceived(Message<HomeAddressMessage> message) {
-        createOrUpdateEntityFromMessage(message, Location.class, locationRepository, (location, msg) -> {
-            location.setAddress(msg.getAddress());
-            location.setName(msg.getName());
-            location.setLatitude(msg.getLatitude());
-            location.setLongitude(msg.getLongitude());
-        });
+        createOrUpdateEntityFromMessage(message, Location.class);
+    }
+
+    @Override
+    protected EntityWithExternalIdRepository<Location> getRepository() {
+        return locationRepository;
+    }
+
+    @Override
+    protected void fillEntityFieldsFromMessage(Location location, HomeAddressMessage msg) {
+        location.setAddress(msg.getAddress());
+        location.setName(msg.getName());
+        location.setLatitude(msg.getLatitude());
+        location.setLongitude(msg.getLongitude());
     }
 }
